@@ -40,7 +40,7 @@ Em cada VM: `sudo truncate -s0 /etc/machine-id && sudo poweroff`. Depois, no Win
 ```
 
 ## Download
-O `.ova` é grande demais para o repositório. Baixe em: **(colocar aqui o link do Google Drive ou da Release)**
+O `.ova` é grande demais para o repositório. Baixe em: (https://drive.google.com/drive/folders/1dmVx84U_-eYDFe0vSKO8UChmr3TseddC?usp=drive_link)
 
 ## Ordem de inicialização
 1. Ligue a **CENTRAL** primeiro e espere o boot terminar.
@@ -84,7 +84,7 @@ A correção aplicada no agente (`/opt/agente/main.py`) adiciona os campos `serv
     └── instalar-agente.sh  # em cada servidor: sudo bash instalar-agente.sh srv-monitor-01
 ```
 
-## Reinstalar do zero (sem o .ova)
+## Como reinstalar do zero (sem o .ova)
 1. Crie 4 VMs Ubuntu 22.04 com os IPs fixos da tabela (netplan) e os adaptadores host-only + NAT.
 2. Na central: `sudo bash scripts/instalar-central.sh`
 3. Em cada servidor: `sudo bash scripts/instalar-agente.sh srv-monitor-0N`
