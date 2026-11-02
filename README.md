@@ -4,6 +4,9 @@ Projeto: https://github.com/EduardoCorrea01/monitoramento-data-center
 
 Um único arquivo `monitoramento-datacenter.ova` contém as 4 VMs.
 
+## Download
+O `.ova` é grande demais para o repositório. Baixe em: (https://drive.google.com/drive/folders/1dmVx84U_-eYDFe0vSKO8UChmr3TseddC?usp=drive_link)
+
 ## Arquitetura
 ```text
 srv-monitor-01 (.11) --\
@@ -38,9 +41,6 @@ Em cada VM: `sudo truncate -s0 /etc/machine-id && sudo poweroff`. Depois, no Win
 ```powershell
 & "C:\Program Files\Oracle\VirtualBox\VBoxManage.exe" export CENTRAL Servidor-01 Servidor-02 Servidor-03 -o monitoramento-datacenter.ova --options manifest,macs
 ```
-
-## Download
-O `.ova` é grande demais para o repositório. Baixe em: (https://drive.google.com/drive/folders/1dmVx84U_-eYDFe0vSKO8UChmr3TseddC?usp=drive_link)
 
 ## Ordem de inicialização
 1. Ligue a **CENTRAL** primeiro e espere o boot terminar.
