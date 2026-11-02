@@ -42,6 +42,17 @@ WantedBy=multi-user.target
 E2
 # Dashboard em http://192.168.56.20/dashboard/ apontando pra API da central
 sudo sed -i "s#const API_BASE = .*#const API_BASE = 'http://192.168.56.20';#" /opt/monitoramento/dashboard/app.js
+# Correção: o dashboard passa a usar o status ONLINE/OFFLINE vindo da API
+sudo python3 - <<'PY'
+p = '/opt/monitoramento/dashboard/app.js'
+s = open(p).read()
+a = "window.receiveServerTelemetry({ ...metric, ip: server.ip, name: server.name });"
+if 'live.offline' not in s:
+    s = s.replace(a, a + " const live = monitoringService.servers.get(String(metric.server_id ?? server.id)); if (live) live.offline = String(server.status).toUpperCase() === 'OFFLINE';", 1)
+    s = s.replace("setApiConnectionSuccess();\n\t} catch", "refreshDashboard(); setApiConnectionSuccess();\n\t} catch", 1)
+    open(p, 'w').write(s)
+PY
+sudo sed -i 's/app.js?v=18/app.js?v=19/' /opt/monitoramento/dashboard/index.html
 sudo tee /etc/nginx/sites-available/monitor >/dev/null <<'E2'
 server {
     listen 80 default_server;
